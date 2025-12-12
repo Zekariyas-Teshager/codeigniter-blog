@@ -57,6 +57,19 @@
                                 <small class="text-muted"><?= date('M j, Y g:i A', strtotime($comment['created_at'])) ?></small>
                                 <p class="mb-1"><?= nl2br(esc($comment['content'])) ?></p>
                             </div>
+                            <!-- Show reply count -->
+                            <div class="reply-info">
+                                <?php if ($comment['reply_count'] >= 0): ?>
+                                    <span class="badge bg-secondary">
+                                        <?= $comment['reply_count']; ?>
+                                        <?= $comment['reply_count'] == 1 ? 'reply' : 'replies'; ?>
+                                    </span>
+                                <?php endif; ?>
+
+                                <button class="btn-reply" data-comment-id="<?= $comment['id']; ?>">
+                                    Reply
+                                </button>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -65,6 +78,7 @@
                     <hr>
                     <h5>Add a Comment</h5>
                     <form action="<?= base_url('comments/add') ?>" method="post">
+                        <?= csrf_field() ?>
                         <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
                         <div class="mb-3">
                             <textarea class="form-control" name="content" rows="3" placeholder="Join the discussion..." required></textarea>

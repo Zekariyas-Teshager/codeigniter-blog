@@ -186,7 +186,7 @@ class Blog extends BaseController
         }
 
         // Check if user can delete this post
-        if (!can_delete_post($post['author_id'])) {
+        if (!can_edit_post($post['author_id'])) {
             return redirect()->back()->with('error', 'You do not have permission to delete this post.');
         }
 

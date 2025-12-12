@@ -50,13 +50,8 @@ class Comments extends BaseController
             return redirect()->back()->with('error', 'Comment must be between 5 and 1000 characters.')->withInput();
         }
 
-        if ($this->commentModel->insert($commentData)) {
-            // Auto-approve comments for admins and authors
-            if (is_admin() || is_author()) {
-                $this->commentModel->update($this->commentModel->getInsertID(), ['is_approved' => true]);
-            }
-            
-            session()->setFlashdata('success', 'Comment added successfully!' . (!is_admin() && !is_author() ? ' It will be visible after approval.' : ''));
+        if ($this->commentModel->insert($commentData)) {            
+            session()->setFlashdata('success', 'Comment added successfully!');
         } else {
             session()->setFlashdata('error', 'Failed to add comment. Please try again.');
         }
@@ -107,16 +102,4 @@ class Comments extends BaseController
         return redirect()->back();
     }
 
-    public function manage()
-    {
-        if (!is_admin()) {
-            return redirect()->back()->with('error', 'You do not have permission to access this page.');
-        }
-
-        $data['title'] = 'Manage Comments';
-        $data['unapprovedComments'] = $this->commentModel->getUnapprovedComments();
-        $data['recentComments'] = $this->commentModel->orderBy('created_at', 'DESC')->findAll(10);
-
-        return $this->renderView('admin/comments', $data);
-    }
 }
