@@ -14,7 +14,7 @@
 <?php if (is_author()): ?>
     <!-- Author Dashboard -->
     <div class="row mb-4">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card bg-primary text-white">
                 <a href="<?= site_url('posts/my-posts?s=published') ?>" class="btn btn-primary">
                     <div class="card-body">
@@ -31,7 +31,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card bg-warning text-dark">
                 <a href="<?= site_url('posts/my-posts?s=draft') ?>" class="btn btn-warning">
                     <div class="card-body">
@@ -48,7 +48,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card bg-info text-white">
                 <a href="<?= site_url('posts/my-posts')?>" class="btn btn-info">
                     <div class="card-body">
@@ -116,7 +116,6 @@
             <p class="text-muted mb-4">As a reader, you can explore blog posts and interact with the community.</p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="<?= site_url() ?>" class="btn btn-primary">Browse Posts</a>
-                <a href="<?= site_url('profile') ?>" class="btn btn-outline-secondary">Update Profile</a>
             </div>
         </div>
     </div>

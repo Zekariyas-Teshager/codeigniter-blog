@@ -68,16 +68,6 @@
                         </li>
                     <?php endif; ?>
 
-                    <form class="d-flex me-2" action="<?= base_url('search') ?>" method="get">
-                        <div class="input-group">
-                            <input type="search" class="form-control" name="q" placeholder="Search posts..."
-                                value="<?= service('request')->getGet('q') ?? ''  ?>">
-                            <button class="btn btn-outline-light" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-
                     <?php if (is_logged_in() && can_create_post()): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= site_url('posts/create') ?>">
@@ -108,7 +98,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="<?= is_admin() ? site_url('admin'): site_url('dashboard') ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                <li><a class="dropdown-item" href="<?= is_admin() ? site_url('admin') : site_url('dashboard') ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -127,6 +117,18 @@
             </div>
         </div>
     </nav>
+
+    <div class="d-flex justify-content-end container mt-3">
+        <form class="d-flex me-2" action="<?= base_url('search') ?>" method="get">
+            <div class="input-group">
+                <input type="search" class="form-control border-primary" name="q" placeholder="Search posts..."
+                    value="<?= service('request')->getGet('q') ?? ''  ?>">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
 
     <main class="container my-4">
         <!-- Flash Messages -->

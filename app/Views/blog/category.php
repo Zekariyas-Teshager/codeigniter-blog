@@ -12,9 +12,7 @@
         <?php if (empty($posts)): ?>
             <div class="alert alert-info">
                 <h4><?= 'No posts yet on the category: ' . $category['name'] ?></h4>
-                <?= can_create_post() ??
-                    '<p class="mb-0">Be the first to write a blog post on this category!</p>'
-                ?>
+                <p class="mb-0">Be the first to write a blog post on this category!</p>
             </div>
         <?php else: ?>
             <?php foreach ($posts as $post): ?>
@@ -41,7 +39,10 @@
                         <?php if ($post['excerpt']): ?>
                             <p class="card-text"><?= esc($post['excerpt']) ?></p>
                         <?php else: ?>
-                            <p class="card-text"><?= character_limiter(strip_tags($post['content']), 200) ?></p>
+                            <?php
+                            $content = strip_tags($post['content']);
+                            echo strlen($content) > 200 ? substr($content, 0, 200) . '...' : $content;
+                            ?>
                         <?php endif; ?>
 
                         <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm">

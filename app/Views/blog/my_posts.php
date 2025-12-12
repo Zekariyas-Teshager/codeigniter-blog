@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>My Posts</h1>
             <a href="<?= base_url('posts/create') ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Create New Post
+                <i class="fas fa-plus"></i> Write New Post
             </a>
         </div>
 

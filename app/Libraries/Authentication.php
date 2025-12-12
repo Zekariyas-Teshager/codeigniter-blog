@@ -109,11 +109,6 @@ class Authentication
         return $this->getUserRole() === 'author';
     }
     
-    public function isReader()
-    {
-        return $this->getUserRole() === 'reader';
-    }
-    
     private function setUserSession($user)
     {
         $sessionData = [

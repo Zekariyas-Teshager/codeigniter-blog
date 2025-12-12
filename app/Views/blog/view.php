@@ -17,7 +17,7 @@
         </div>
     </section>
 
-    <!-- <?php if (can_delete_post($post['author_id'])) : ?>
+    <!-- <?php if (can_edit_post($post['author_id'])) : ?>
         <section class="mb-5">
             <div class="d-flex gap-2">
                 <?php if (can_edit_post($post['author_id'])) : ?>

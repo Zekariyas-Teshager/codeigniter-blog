@@ -25,6 +25,7 @@ class Blog extends BaseController
 
         // Get all published posts
         $data['posts'] = $this->postModel->getPublishedPosts(10);
+        $data['categories'] = $this->categoryModel->getCategoriesWithPostCount();
 
         return $this->renderView('blog/index', $data);
     }

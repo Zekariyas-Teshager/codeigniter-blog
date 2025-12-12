@@ -39,7 +39,10 @@
                         <?php if ($post['excerpt']): ?>
                             <p class="card-text"><?= esc($post['excerpt']) ?></p>
                         <?php else: ?>
-                            <p class="card-text"><?= character_limiter(strip_tags($post['content']), 200) ?></p>
+                            <?php
+                            $content = strip_tags($post['content']);
+                            echo strlen($content) > 200 ? substr($content, 0, 200) . '...' : $content;
+                            ?>
                         <?php endif; ?>
                         
                         <a href="<?= base_url('post/' . $post['slug']) ?>" class="btn btn-outline-primary btn-sm">

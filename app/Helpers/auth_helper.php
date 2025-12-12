@@ -44,26 +44,22 @@ if (!function_exists('is_author')) {
     }
 }
 
-if (!function_exists('can_edit_post')) {
-    function can_edit_post($postAuthorId)
-    {
-        $authz = service('authorization');
-        return $authz->canEditPost($postAuthorId);
-    }
-}
-
-if (!function_exists('can_delete_post')) {
-    function can_delete_post($postAuthorId)
-    {
-        $authz = service('authorization');
-        return $authz->canDeletePost($postAuthorId);
-    }
-}
-
 if (!function_exists('can_create_post')) {
     function can_create_post()
     {
-        $authz = service('authorization');
-        return $authz->canCreatePost();
+        // Any logged-in user can create posts
+        return is_logged_in();
+    }
+}
+
+if (!function_exists('can_edit_post')) {
+    function can_edit_post($postAuthorId)
+    {
+        if (!is_logged_in()) {
+            return false;
+        }
+        
+        // Admins can edit any post, users can only edit their own
+        return is_admin() || user_data('id') == $postAuthorId;
     }
 }

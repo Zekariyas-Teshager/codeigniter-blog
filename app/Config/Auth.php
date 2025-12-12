@@ -6,7 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 
 class Auth extends BaseConfig
 {
-    public $defaultRole = 'reader';
+    public $defaultRole = 'author';
     public $sessionKey = 'auth_user';
     public $hashCost = 10;
     public $loginAttempts = 5;
