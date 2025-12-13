@@ -41,9 +41,9 @@ $routes->group('posts', ['filter' => 'auth'], function($routes) {
 
 // Comments routes
 $routes->post('comments/add', 'Comments::add');
-$routes->get('comments/approve/(:num)', 'Comments::approve/$1', ['filter' => 'role:admin']);
 $routes->get('comments/delete/(:num)', 'Comments::delete/$1');
-$routes->get('comments/manage', 'Comments::manage', ['filter' => 'role:admin']);
+$routes->get('comment/load-replies/(:num)', 'Comments::loadReplies/$1');
+$routes->post('comment/add-reply', 'Comments::addReply');
 
 // Admin routes
 $routes->group('admin', ['filter' => 'role:admin'], function($routes) {

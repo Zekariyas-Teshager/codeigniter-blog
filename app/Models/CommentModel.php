@@ -9,7 +9,7 @@ class CommentModel extends Model
     protected $table = 'comments';
     protected $primaryKey = 'id';
 
-    protected $allowedFields = ['post_id', 'user_id', 'content'];
+    protected $allowedFields = ['post_id', 'user_id', 'content', 'parent_id'];
     protected $useTimestamps = true;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
@@ -55,5 +55,27 @@ class CommentModel extends Model
         }
 
         return $comments;
+    }
+
+    public function getReplies($commentId, $page = 1, $limit = 5)
+    {
+        $offset = ($page - 1) * $limit;
+
+        $builder = $this->db->table('comments as c');
+        $builder->select('c.*, u.username as author_name');
+        $builder->join('users as u', 'u.id = c.user_id', 'left');
+        $builder->where('c.parent_id', $commentId);
+        $builder->orderBy('c.created_at', 'ASC');
+        $builder->limit($limit, $offset);
+
+        return $builder->get()->getResultArray();
+    }
+
+    // Get total reply count for pagination
+    public function getTotalReplies($commentId)
+    {
+        return $this->db->table('comments')
+            ->where('parent_id', $commentId)
+            ->countAllResults();
     }
 }

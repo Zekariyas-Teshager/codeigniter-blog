@@ -41,7 +41,8 @@ class Blog extends BaseController
         $data = [
             'title' => $post['title'],
             'post' => $post,
-            'comments' => $this->commentModel->getCommentsByPost($post['id'])
+            'comments' => $this->commentModel->getCommentsByPost($post['id']),
+            'totalComments' => count($this->commentModel->getCommentsByPost($post['id'])),
         ];
 
         return $this->renderView('blog/view', $data);
