@@ -38,16 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Cancel reply buttons
-    if (cancelReplyBtn) {
-        commentId = cancelReplyBtn.dataset.commentId;
-        cancelReplyBtn.addEventListener('click', resetReplyForm(commentId));
-    }
+    document.querySelectorAll('.cancel-reply-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const commentId = button.dataset.commentId;
+            resetReplyForm(commentId);
+        });
+    });
 
-    if (cancelReplyFormBtn) {
-        commentId = cancelReplyFormBtn.dataset.commentId;
-        cancelReplyFormBtn.addEventListener('click', resetReplyForm(commentId));
-    }
+    document.querySelectorAll('.cancel-reply-form-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const commentId = button.dataset.commentId;
+            const replyFormContainer = document.getElementById(`reply-form-container-${commentId}`);
+            replyFormContainer.style.display = 'none';
+        });
+    });
 
     // Form submission via AJAX
     const replyForm = document.getElementById('reply-form');

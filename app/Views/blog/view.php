@@ -63,7 +63,7 @@
                                     <div class="card border-primary">
                                         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                                             <h5 class="mb-0" id="reply-form-title">Reply to Comment</h5>
-                                            <button type="button" class="btn-close btn-close-white" id="cancel-reply-btn"
+                                            <button type="button" class="btn-close btn-close-white cancel-reply-btn" id="cancel-reply-btn"
                                             data-comment-id="<?= $comment['id']; ?>"></button>
                                         </div>
                                         <div class="card-body">
@@ -87,7 +87,7 @@
                                                                 role="status" aria-hidden="true"></span>
                                                             <span class="btn-text">Submit Reply</span>
                                                         </button>
-                                                        <button type="button" class="btn btn-secondary" id="cancel-reply-form-btn" 
+                                                        <button type="button" class="btn btn-secondary cancel-reply-form-btn" id="cancel-reply-form-btn" 
                                                             data-comment-id="<?= $comment['id']; ?>">
                                                             Cancel
                                                         </button>
